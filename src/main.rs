@@ -1,5 +1,6 @@
 use std::env;
 
+mod utils;
 mod ex1;
 
 fn main() {
