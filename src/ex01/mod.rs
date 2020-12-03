@@ -75,7 +75,7 @@ fn find_value(target_value: usize, report_values: &[bool; TARGET_VALUE]) -> Opti
 mod tests {
     #[test]
     fn test_part_a() {
-        if let Some(result) = crate::ex1::part_a(Some(&"./src/ex1/sample.txt".to_string())) {
+        if let Some(result) = crate::ex01::part_a(Some(&"./src/ex01/sample.txt".to_string())) {
             assert_eq!(result, 514579);
         } else {
             panic!("Could not find a match");
@@ -84,7 +84,7 @@ mod tests {
 
     #[test]
     fn test_part_b() {
-        if let Some(result) = crate::ex1::part_b(Some(&"./src/ex1/sample.txt".to_string())) {
+        if let Some(result) = crate::ex01::part_b(Some(&"./src/ex01/sample.txt".to_string())) {
             assert_eq!(result, 241861950);
         } else {
             panic!("Could not find a match");
