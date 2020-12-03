@@ -26,3 +26,25 @@ endeavor to understand more deeply the complicated nested object types
 being returned by my new `read_lines` function, but for now it just works.
 I will likely move `read_lines` into a util directory, since virtually
 every day is going to require reading some input.
+
+## Part B
+Ha, I had a feeling this would happen. Now we need to get an inner loop
+added, but at least we won't have three loops, so we'll only be bumping
+up to O(n^2) and not O(n^3). The crux of my solution still works, but now
+we need to add 2 values from the list together, get the difference from the
+2020 target value, and check if that difference value is in the list. In
+order for the inner loops to work, we now need some sort of sorted list.
+Unfortunately the HashMap I used in part 1 won't return an iterated in an
+expected order, so if we're trying to use a sublist in the inner loop,
+it's impossible to know if the sublist is what we're expecting or not. So
+I changed the HashMap to a List of bools, where `true` represents a value
+that is in the list. Now we can do a double loop through the list, which
+will, by definition, be ordered.
+
+## Big O notation
+O(n^2)
+
+## What else did I learn
+HashMap iterators won't run in a guaranteed order, so doing nested loops
+won't allow for the trick where the inner loop starts 1 index past the
+outer loop.

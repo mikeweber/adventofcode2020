@@ -15,3 +15,30 @@ write each of the challenges in a single project with a single entrypoint code. 
 program requires running the same program, but with different arguments. e.g. calling
 `cargo run 1a` will run the code for the first part of day 1, `cargo run 2b` will run the code
 for the second part of day 2, etc.
+
+## Days
+* [Day 1](./src/ex1/JOURNAL.md)
+* Day 2
+* Day 3
+* Day 4
+* Day 5
+* Day 6
+* Day 7
+* Day 8
+* Day 9
+* Day 10
+* Day 11
+* Day 12
+* Day 13
+* Day 14
+* Day 15
+* Day 16
+* Day 17
+* Day 18
+* Day 19
+* Day 20
+* Day 21
+* Day 22
+* Day 23
+* Day 24
+* Day 25
