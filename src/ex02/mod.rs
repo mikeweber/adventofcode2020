@@ -9,6 +9,16 @@ pub fn part_a(filename: Option<&String>) -> Option<u32> {
     return None;
 }
 
+pub fn part_b(filename: Option<&String>) -> Option<u32> {
+    if let Some(path) = filename {
+        let passwords = parse_from_file(path);
+        return Some(passwords.iter().fold(0, |count, x| if x.is_valid_v2() { count + 1 } else { count } ));
+    }
+
+    return None;
+
+}
+
 fn parse_from_file(filename: &String) -> Vec<PasswordRule> {
     let mut rules = vec!();
     if let Ok(lines) = read_lines(filename) {
@@ -41,9 +51,23 @@ impl PasswordRule {
     }
 
     pub fn is_valid(&self) -> bool {
-        let ch = self.pass.chars().next().unwrap();
         let matches = self.pass.chars().fold(0, |count, ch| if ch == self.letter { count + 1 } else { count } );
         return self.min <= matches && matches <= self.max;
+    }
+
+    pub fn is_valid_v2(&self) -> bool {
+        let ch1 = self.pass.chars().nth(self.min - 1);
+        let ch2 = self.pass.chars().nth(self.max - 1);
+        let match1 = match ch1 {
+            Some(ch) => { ch == self.letter },
+            None     => { false }
+        };
+        let match2 = match ch2 {
+            Some(ch) => { ch == self.letter },
+            None     => { false }
+        };
+
+        return match1 != match2 && (match1 || match2);
     }
 }
 
@@ -143,6 +167,18 @@ mod tests {
 
         let rule3 = PasswordRule::new(&String::from("2-9 c: ccccccccc"));
         assert_eq!(rule3.is_valid(), true);
+    }
+
+    #[test]
+    fn test_is_valid_v2() {
+        let rule1 = PasswordRule::new(&String::from("1-3 a: abcde"));
+        assert_eq!(rule1.is_valid_v2(), true);
+
+        let rule2 = PasswordRule::new(&String::from("1-3 b: cdefg"));
+        assert_eq!(rule2.is_valid_v2(), false);
+
+        let rule3 = PasswordRule::new(&String::from("2-9 c: ccccccccc"));
+        assert_eq!(rule3.is_valid_v2(), false);
     }
 
     #[test]
