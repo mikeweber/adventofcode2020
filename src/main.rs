@@ -3,6 +3,7 @@ use std::env;
 mod utils;
 mod ex01;
 mod ex02;
+mod ex03;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -13,6 +14,7 @@ fn main() {
             "1b" => ex01::part_b(args.get(2)),
             "2a" => ex02::part_a(args.get(2)),
             "2b" => ex02::part_b(args.get(2)),
+            "3a" => ex03::part_a(args.get(2)),
             _ => {
                 println!("Could not recognize program {}", prog_num);
                 None
