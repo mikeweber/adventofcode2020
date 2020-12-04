@@ -2,7 +2,7 @@
 
 ## Part A
 Off to an easy start, per usual. The direct solution to the
-[https://adventofcode.com/2020/day/1](expense report problem) is to do two
+[expense report problem](https://adventofcode.com/2020/day/1) is to do two
 loops, and compare every value to every other value until you find the two
 values that add up to 2020. Though at the time, I was holding a month old
 baby and couldn't implement my solution, so all I had was time to think of

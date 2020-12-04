@@ -18,7 +18,7 @@ for the second part of day 2, etc.
 
 ## Days
 * [Day 1](./src/ex01/JOURNAL.md)
-* Day 2
+* [Day 2](./src/ex02/JOURNAL.md)
 * Day 3
 * Day 4
 * Day 5
