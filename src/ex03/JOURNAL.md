@@ -11,7 +11,6 @@ if the spot is open or a tree.
 
 ## Big O Notation
 O(n)
-Not really applicable
 
 ## What did I learn?
 That enums make matching very easy. I've also noticed that I'm fighting less and

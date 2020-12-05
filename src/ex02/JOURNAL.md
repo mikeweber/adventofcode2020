@@ -15,7 +15,7 @@ Getting the parser working was the most difficult part. After that, counting the
 number of characters in the password that matched the rule was almost trivial.
 
 ## Big O notiation
-Not really applicable
+O(n)
 
 ## What did I learn?
 I learned about the `fold` function for iterators in Rust. For counting the
