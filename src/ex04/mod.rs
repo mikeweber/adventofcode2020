@@ -1,6 +1,13 @@
 use std::fs;
 
 pub fn part_a(filename: Option<&String>) -> Option<u32> {
+    if let Some(path) = filename {
+        let licenses = License::from_file(path);
+        let valid_count = licenses.iter().fold(0, |count, license| {
+            if license.is_valid() { count + 1 } else { count }
+        });
+        return Some(valid_count);
+    }
     return None;
 }
 
@@ -16,6 +23,10 @@ struct License {
 }
 
 impl License {
+    pub fn from_file(filename: &String) -> Vec<Self> {
+        fs::read_to_string(filename).unwrap().split("\n\n").map(|lines| Self::new(&String::from(lines))).collect()
+    }
+
     pub fn new(lines: &String) -> Self{
         let mut license = License::new_blank();
         for line in lines.split("\n") {
@@ -49,6 +60,16 @@ impl License {
             cid: None,
         }
     }
+
+    pub fn is_valid(&self) -> bool {
+        self.byr.is_some() &&
+        self.iyr.is_some() &&
+        self.eyr.is_some() &&
+        self.hgt.is_some() &&
+        self.hcl.is_some() &&
+        self.ecl.is_some() &&
+        self.pid.is_some()
+    }
 }
 
 #[cfg(test)]
@@ -67,5 +88,15 @@ mod tests {
         assert_eq!(license1.iyr.unwrap(), String::from("2017"));
         assert_eq!(license1.cid.unwrap(), String::from("147"));
         assert_eq!(license1.hgt.unwrap(), String::from("183cm"));
+    }
+
+    #[test]
+    fn test_license_valid() {
+        let license1 = License::new(&String::from("hcl:#ae17e1 iyr:2013\neyr:2024\necl:brn pid:760753108 byr:1931\nhgt:179cm"));
+        assert!(license1.is_valid());
+
+        let license2 = License::new(&String::from("iyr:2013 ecl:amb cid:350 eyr:2023 pid:028048884\nhcl:#cfa07d byr:1929"));
+        assert!(!license2.is_valid());
+
     }
 }
