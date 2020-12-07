@@ -6,6 +6,7 @@ mod ex02;
 mod ex03;
 mod ex04;
 mod ex05;
+mod ex06;
 
 fn main() {
     let args: Vec<String> = env::args().collect();
@@ -22,6 +23,7 @@ fn main() {
             "4b" => ex04::part_b(args.get(2)),
             "5a" => ex05::part_a(args.get(2)),
             "5b" => ex05::part_b(args.get(2)),
+            "6a" => ex06::part_a(args.get(2)),
             _ => {
                 println!("Could not recognize program {}", prog_num);
                 None

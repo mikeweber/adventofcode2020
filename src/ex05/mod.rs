@@ -7,7 +7,7 @@ pub fn part_a(filename: Option<&String>) -> Option<u32> {
     };
     match tickets.iter().max() {
         Some(max) => Some(*max as u32),
-        Nome => None,
+        None => None,
     }
 }
 
