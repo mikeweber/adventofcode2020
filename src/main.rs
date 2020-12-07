@@ -21,6 +21,7 @@ fn main() {
             "4a" => ex04::part_a(args.get(2)),
             "4b" => ex04::part_b(args.get(2)),
             "5a" => ex05::part_a(args.get(2)),
+            "5b" => ex05::part_b(args.get(2)),
             _ => {
                 println!("Could not recognize program {}", prog_num);
                 None

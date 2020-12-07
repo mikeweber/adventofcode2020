@@ -11,14 +11,50 @@ pub fn part_a(filename: Option<&String>) -> Option<u32> {
     }
 }
 
+pub fn part_b(filename: Option<&String>) -> Option<u32> {
+    let tickets = match filename {
+        Some(path) => parse_tickets(path),
+        None => { return None; }
+    };
+    match tickets.iter().max() {
+        Some(max) => {
+            match tickets.iter().min() {
+                Some(min) => {
+                    find_missing_seat(&tickets, *min, *max)
+                },
+                None => None
+            }
+        },
+        None => None
+    }
+}
+
+fn find_missing_seat(tickets: &Vec<u16>, min: u16, max: u16) -> Option<u32> {
+    let ticket_sublist_opt = tickets.get(0..(tickets.len() - 1));
+    match ticket_sublist_opt {
+        Some(ticket_sublist) => {
+            for (i, ticket) in ticket_sublist.iter().enumerate() {
+                if ticket + (1 as u16) != tickets[i + 1] { return Some(*ticket as u32); }
+            }
+        },
+        None => ()
+    }
+    None
+}
+
 pub fn parse_tickets(path: &String) -> Vec<u16> {
     match read_lines(path) {
-        Ok(lines) => lines.map(|line_r| {
-            match line_r {
-                Ok(line) => parse_ticket(line),
-                _ => 0,
-            }
-        }).collect(),
+        Ok(lines) => {
+            let mut tickets = lines.map(|line_r| {
+                match line_r {
+                    Ok(line) => parse_ticket(line),
+                    _ => 0,
+                }
+            }).collect::<Vec<_>>();
+            tickets.sort();
+            println!("{}", tickets.iter().map(|x| x.to_string()).collect::<Vec<String>>().join("\n"));
+            tickets
+        },
         Err(_e) => { vec![] }
     }
 }
