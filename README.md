@@ -21,7 +21,7 @@ for the second part of day 2, etc.
 * [Day 2](./src/ex02/JOURNAL.md)
 * [Day 3](./src/ex03/JOURNAL.md)
 * [Day 4](./src/ex04/JOURNAL.md)
-* Day 5
+* [Day 5](./src/ex05/JOURNAL.md)
 * Day 6
 * Day 7
 * Day 8
